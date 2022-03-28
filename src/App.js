@@ -6,7 +6,15 @@ class App extends Component {
   }
 
   render(){
-    return(<div className="content"></div>);
+    return(
+    <div className="content">
+      <form action="#" method="get">
+        <div>
+          <label htmlFor="add-task">Add Task: </label>
+          <input type='text' id='add-task' name='add-task'/>
+        </div>
+      </form>
+    </div>);
   }
 }
 
