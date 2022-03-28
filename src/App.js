@@ -12,7 +12,9 @@ class App extends Component {
         <div>
           <label htmlFor="add-task">Add Task: </label>
           <input type='text' id='add-task' name='add-task'/>
+          <input type='submit' id='submit'/>
         </div>
+
       </form>
     </div>);
   }
