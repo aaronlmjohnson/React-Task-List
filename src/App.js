@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Overview from './components/Overview';
 class App extends Component {
   constructor(props){
     super(props);
@@ -14,9 +14,9 @@ class App extends Component {
   addTask(e){
     e.preventDefault();
     const task = document.getElementById('add-task').value;
-
     //updater function to add new task to tasks array
     this.setState(prevState => ({ tasks: [...prevState.tasks, task] }));
+
 
   }
 
@@ -29,8 +29,12 @@ class App extends Component {
           <input type='text' id='add-task' name='add-task'/>
           <input onClick = { this.addTask }type='submit' id='submit'/>
         </div>
-
       </form>
+      <ul id="tasks">
+          {this.state.tasks.map((item)=>{
+            return <Overview task = { item }/>
+          })}
+      </ul>
     </div>);
   }
 }

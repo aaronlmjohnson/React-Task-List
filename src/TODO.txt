@@ -1,7 +1,3 @@
-*With the submit button, you can add the content from your input to a “tasks array”
-    *create tasks array
-    *on submit event add input to task array
-        * managed in state
 * for each task in the tasks array, an HTML list element should be rendered
     *create task list 
     *list elements created in overview and rendered in app
