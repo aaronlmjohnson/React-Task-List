@@ -1,41 +1,58 @@
 import React, { Component } from "react";
-import Overview from './components/Overview';
+import Overview from "./components/Overview";
+import uniqid from "uniqid";
+
 class App extends Component {
-  constructor(props){
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
-      tasks: []
-    }
-
-    this.addTask = this.addTask.bind(this);
+      task: {
+        text: '', 
+        id: uniqid()
+      },
+      tasks: [],
+    };
   }
 
-  addTask(e){
+  handleChange = (e) => {
+    this.setState({
+      task: {
+        text: e.target.value,
+        id: this.state.task.id,
+      },
+    });
+  };
+
+  onSubmitTask = (e) => {
     e.preventDefault();
-    const task = document.getElementById('add-task').value;
-    //updater function to add new task to tasks array
-    this.setState(prevState => ({ tasks: [...prevState.tasks, task] }));
+    this.setState({
+      tasks: [...this.state.tasks, this.state.task],
+      task: {
+        text: '', 
+        id: uniqid()
+      },
+    });
+  };
 
+  render() {
+    const { task, tasks } = this.state;
 
-  }
-
-  render(){
-    return(
-    <div className="content">
-      <form action="#" method="get">
-        <div>
-          <label htmlFor="add-task">Add Task: </label>
-          <input type='text' id='add-task' name='add-task'/>
-          <input onClick = { this.addTask }type='submit' id='submit'/>
-        </div>
-      </form>
-      <ul id="tasks">
-          {this.state.tasks.map((item)=>{
-            return <Overview task = { item }/>
-          })}
-      </ul>
-    </div>);
+    return (
+      <div>
+        <form onSubmit={this.onSubmitTask}>
+          <label htmlFor="taskInput">Enter task</label>
+          <input
+            onChange={this.handleChange}
+            value={task.text}
+            type="text"
+            id="taskInput"
+          />
+          <button type="submit">Add Task</button>
+        </form>
+        <Overview tasks={tasks} />
+      </div>
+    );
   }
 }
 
