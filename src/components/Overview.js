@@ -1,15 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Overview = (props) => {
-  const { tasks } = props;
+class Overview extends Component{
 
-  return (
-    <ul>
-      {tasks.map((task, i) => {
-        return <li key={task.id}>{i+1}. {task.text}</li>;
-      })}
-    </ul>
-  );
+  constructor(props){
+      super(props)
+  }
+
+  render(){
+    const { tasks } = this.props;
+
+    return (
+        <ul>
+            {
+                tasks.map((task,i)=>{
+                    return(
+                    <li key={task.id}>
+                        {i+1}. {task.text} 
+                        <button onClick={()=>{this.props.deleteTask(task.id)}}>delete</button>
+                    </li>
+                    );
+                })
+            }
+        </ul>
+    );
+  }   
 };
 
 export default Overview;
